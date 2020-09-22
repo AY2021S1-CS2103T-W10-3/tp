@@ -24,7 +24,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyMainCatalogue_success() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
-        expectedModel.setProjectCatalogue(new MainCatalogue());
+        expectedModel.setMainCatalogue(new MainCatalogue());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

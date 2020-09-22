@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveMainCatalogue(model.getProjectCatalogue());
+            storage.saveMainCatalogue(model.getMainCatalogue());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyMainCatalogue getMainCatalogue() {
-        return model.getProjectCatalogue();
+        return model.getMainCatalogue();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getMainCatalogueFilePath() {
-        return model.getProjectCatalogueFilePath();
+        return model.getMainCatalogueFilePath();
     }
 
     @Override

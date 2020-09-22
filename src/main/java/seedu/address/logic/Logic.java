@@ -26,7 +26,7 @@ public interface Logic {
     /**
      * Returns the MainCatalogue.
      *
-     * @see seedu.address.model.Model#getProjectCatalogue()
+     * @see seedu.address.model.Model#getMainCatalogue()
      */
     ReadOnlyMainCatalogue getMainCatalogue();
 

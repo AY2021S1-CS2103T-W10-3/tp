@@ -66,12 +66,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getProjectCatalogueFilePath() {
+    public Path getMainCatalogueFilePath() {
         return userPrefs.getMainCatalogueFilePath();
     }
 
     @Override
-    public void setProjectCatalogueFilePath(Path mainCatalogueFilePath) {
+    public void setMainCatalogueFilePath(Path mainCatalogueFilePath) {
         requireNonNull(mainCatalogueFilePath);
         userPrefs.setMainCatalogueFilePath(mainCatalogueFilePath);
     }
@@ -79,12 +79,12 @@ public class ModelManager implements Model {
     //=========== MainCatalogue ================================================================================
 
     @Override
-    public void setProjectCatalogue(ReadOnlyMainCatalogue mainCatalogue) {
+    public void setMainCatalogue(ReadOnlyMainCatalogue mainCatalogue) {
         this.mainCatalogue.resetData(mainCatalogue);
     }
 
     @Override
-    public ReadOnlyMainCatalogue getProjectCatalogue() {
+    public ReadOnlyMainCatalogue getMainCatalogue() {
         return mainCatalogue;
     }
 
@@ -147,4 +147,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredProjects.equals(other.filteredProjects);
     }
+
 }

@@ -12,7 +12,7 @@ import java.util.Set;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
-import seedu.address.model.tag.ProjectTag;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
@@ -28,7 +28,7 @@ public class Project {
 
     // Data fields
     private final ProjectDescription projectDescription;
-    private final Set<ProjectTag> projectTags = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
     private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
@@ -37,14 +37,14 @@ public class Project {
      * Every field must be present and not null.
      */
     public Project(ProjectName projectName, Deadline deadline, Email email, ProjectDescription projectDescription,
-                   Set<ProjectTag> projectTags,
+                   Set<Tag> tags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
-        requireAllNonNull(projectName, deadline, email, projectDescription, projectTags, listOfParticipations, tasks);
+        requireAllNonNull(projectName, deadline, email, projectDescription, tags, listOfParticipations, tasks);
         this.projectName = projectName;
         this.deadline = deadline;
         this.email = email;
         this.projectDescription = projectDescription;
-        this.projectTags.addAll(projectTags);
+        this.tags.addAll(tags);
         this.listOfParticipations.putAll(listOfParticipations);
         this.tasks.addAll(tasks);
     }
@@ -89,8 +89,8 @@ public class Project {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<ProjectTag> getProjectTags() {
-        return Collections.unmodifiableSet(projectTags);
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -142,14 +142,14 @@ public class Project {
                 && otherProject.getDeadline().equals(getDeadline())
                 && otherProject.getEmail().equals(getEmail())
                 && otherProject.getProjectDescription().equals(getProjectDescription())
-                && otherProject.getProjectTags().equals(getProjectTags())
+                && otherProject.getTags().equals(getTags())
                 && otherProject.getTasks().equals(getTasks());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(projectName, deadline, email, projectDescription, projectTags, tasks);
+        return Objects.hash(projectName, deadline, email, projectDescription, tags, tasks);
     }
 
     @Override
@@ -163,8 +163,8 @@ public class Project {
                 .append(getEmail())
                 .append(" ProjectDescription: ")
                 .append(getProjectDescription())
-                .append(" Project Tags: ");
-        getProjectTags().forEach(builder::append);
+                .append(" Tags: ");
+        getTags().forEach(builder::append);
         builder.append(" Tasks: ");
         getTasks().forEach(builder::append);
         return builder.toString();

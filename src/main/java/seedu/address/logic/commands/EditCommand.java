@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
@@ -26,7 +26,7 @@ import seedu.address.model.project.Email;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.ProjectTag;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 /**
  * Edits the details of an existing project in the main catalogue.
@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_PROJECT_DESCRIPTION + "PROJECTDESCRIPTION] "
-            + "[" + PREFIX_PROJECT_TAG + "PROJECT TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "29-02-2020 00:00:00 "
@@ -101,12 +101,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
         ProjectDescription updatedProjectDescription = editProjectDescriptor.getProjectDescription()
             .orElse(projectToEdit.getProjectDescription());
-        Set<ProjectTag> updatedProjectTags = editProjectDescriptor.getProjectTags().orElse(
-            projectToEdit.getProjectTags());
+        Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
         Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
 
         return new Project(updatedProjectName, updatedDeadline, updatedEmail, updatedProjectDescription,
-                updatedProjectTags, new HashMap<>(), updatedTasks);
+                updatedTags, new HashMap<>(), updatedTasks);
     }
 
     @Override
@@ -136,21 +135,21 @@ public class EditCommand extends Command {
         private Deadline deadline;
         private Email email;
         private ProjectDescription projectDescription;
-        private Set<ProjectTag> projectTags;
+        private Set<Tag> tags;
         private Set<Task> tasks;
 
         public EditProjectDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code projectTags} is used internally.
+         * A defensive copy of {@code tags} is used internally.
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setProjectName(toCopy.projectName);
             setDeadline(toCopy.deadline);
             setEmail(toCopy.email);
             setProjectDescription(toCopy.projectDescription);
-            setTags(toCopy.projectTags);
+            setTags(toCopy.tags);
             setTasks(toCopy.tasks);
         }
 
@@ -158,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(projectName, deadline, email, projectDescription, projectTags, tasks);
+            return CollectionUtil.isAnyNonNull(projectName, deadline, email, projectDescription, tags, tasks);
         }
 
         public void setProjectName(ProjectName projectName) {
@@ -194,20 +193,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code projectTags} to this object's {@code projectTags}.
-         * A defensive copy of {@code projectTags} is used internally.
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<ProjectTag> projectTags) {
-            this.projectTags = (projectTags != null) ? new HashSet<>(projectTags) : null;
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
-         * Returns an unmodifiable project tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code projectTags} is null.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<ProjectTag>> getProjectTags() {
-            return (projectTags != null) ? Optional.of(Collections.unmodifiableSet(projectTags)) : Optional.empty();
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         /**
@@ -246,7 +245,7 @@ public class EditCommand extends Command {
                     && getDeadline().equals(e.getDeadline())
                     && getEmail().equals(e.getEmail())
                     && getProjectDescription().equals(e.getProjectDescription())
-                    && getProjectTags().equals(e.getProjectTags())
+                    && getTags().equals(e.getTags())
                     && getTasks().equals(e.getTasks());
         }
     }

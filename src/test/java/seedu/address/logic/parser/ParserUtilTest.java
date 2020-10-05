@@ -18,7 +18,7 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.ProjectTag;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 public class ParserUtilTest {
@@ -153,25 +153,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseProjectTag(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
     }
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseProjectTag(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
     }
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        ProjectTag expectedProjectTag = new ProjectTag(VALID_TAG_1);
-        assertEquals(expectedProjectTag, ParserUtil.parseProjectTag(VALID_TAG_1));
+        Tag expectedTag = new Tag(VALID_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        ProjectTag expectedProjectTag = new ProjectTag(VALID_TAG_1);
-        assertEquals(expectedProjectTag, ParserUtil.parseProjectTag(tagWithWhitespace));
+        Tag expectedTag = new Tag(VALID_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
     }
 
     @Test
@@ -191,12 +191,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<ProjectTag> actualProjectTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<ProjectTag>
-            expectedProjectTagSet = new HashSet<ProjectTag>(Arrays.asList(new ProjectTag(VALID_TAG_1),
-            new ProjectTag(VALID_TAG_2)));
+        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
-        assertEquals(expectedProjectTagSet, actualProjectTagSet);
+        assertEquals(expectedTagSet, actualTagSet);
     }
 
     // TODO: task invalid tests

@@ -11,7 +11,7 @@ import java.util.Set;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.ProjectTag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Teammate in the team.
@@ -26,19 +26,19 @@ public class Person {
 
     // Data fields
     private Address address;
-    private final Set<ProjectTag> projectTags = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
     private HashMap<ProjectName, Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(PersonName personName, Phone phone, Email email, Address address, Set<ProjectTag> projectTags) {
-        requireAllNonNull(personName, phone, email, address, projectTags);
+    public Person(PersonName personName, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(personName, phone, email, address, tags);
         this.personName = personName;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.projectTags.addAll(projectTags);
+        this.tags.addAll(tags);
     }
 
     public PersonName getPersonName() {
@@ -81,8 +81,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<ProjectTag> getTags() {
-        return Collections.unmodifiableSet(projectTags);
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -126,7 +126,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(personName, phone, email, address, projectTags);
+        return Objects.hash(personName, phone, email, address, tags);
     }
 
     @Override

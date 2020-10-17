@@ -118,7 +118,7 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Person name: ")
+        builder.append(" Github username: ")
                 .append(getGithubHandle())
                 .append(" Phone: ")
                 .append(getPhone())

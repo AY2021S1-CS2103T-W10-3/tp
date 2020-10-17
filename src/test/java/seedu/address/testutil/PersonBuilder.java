@@ -4,6 +4,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GithubHandle;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 
 /**
@@ -75,7 +76,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(githubHandle, phone, email, address);
+        return new Person(githubHandle, new PersonName(""), email, address, phone);
     }
 
 }

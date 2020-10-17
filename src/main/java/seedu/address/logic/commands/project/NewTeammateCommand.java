@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GithubHandle;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.Project;
 
@@ -44,7 +45,7 @@ public class NewTeammateCommand extends Command {
         Email personEmail = ParsePersonUtil.parseEmail(email);
         Address personAddress = ParsePersonUtil.parseAddress(address);
 
-        teammate = new Person(personGithubHandle, personPhone, personEmail, personAddress);
+        teammate = new Person(personGithubHandle, new PersonName(""), personEmail, personAddress, personPhone);
     }
 
     @Override

@@ -16,7 +16,7 @@ import seedu.address.model.project.ProjectName;
 public class Person {
 
     // Identity fields
-    private PersonName personName;
+    private GithubHandle githubHandle;
     private Phone phone;
     private Email email;
 
@@ -27,16 +27,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(PersonName personName, Phone phone, Email email, Address address) {
-        requireAllNonNull(personName, phone, email, address);
-        this.personName = personName;
+    public Person(GithubHandle githubHandle, Phone phone, Email email, Address address) {
+        requireAllNonNull(githubHandle, phone, email, address);
+        this.githubHandle = githubHandle;
         this.phone = phone;
         this.email = email;
         this.address = address;
     }
 
-    public PersonName getPersonName() {
-        return personName;
+    public GithubHandle getGithubHandle() {
+        return githubHandle;
     }
 
 
@@ -52,8 +52,8 @@ public class Person {
         return address;
     }
 
-    public void updatePersonName(String newPersonNameStr) {
-        personName = new PersonName(newPersonNameStr);
+    public void updateGithubHandle(String newGithubHandleStr) {
+        githubHandle = new GithubHandle(newGithubHandleStr);
     }
 
     public void updateAddress(String newAddressStr) {
@@ -82,7 +82,7 @@ public class Person {
         }
 
         return otherTeammate != null
-                && otherTeammate.getPersonName().equals(getPersonName())
+                && otherTeammate.getGithubHandle().equals(getGithubHandle())
                 && (otherTeammate.getPhone().equals(getPhone())
                 || otherTeammate.getEmail().equals(getEmail())
                 || otherTeammate.getAddress().equals(getAddress()));
@@ -103,7 +103,7 @@ public class Person {
         }
 
         Person otherProject = (Person) other;
-        return otherProject.getPersonName().equals(getPersonName())
+        return otherProject.getGithubHandle().equals(getGithubHandle())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())
                 && otherProject.getAddress().equals(getAddress());
@@ -112,14 +112,14 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(personName, phone, email, address);
+        return Objects.hash(githubHandle, phone, email, address);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Person name: ")
-                .append(getPersonName())
+                .append(getGithubHandle())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")

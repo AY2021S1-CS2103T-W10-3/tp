@@ -24,7 +24,7 @@ public class AssignCommandParserTest {
     @Test
     public void parse_validArgs_returnsAssignCommand() {
         assertParseSuccess(parser, "1 Alice Pauline",
-                new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().toString()));
+                new AssignCommand(INDEX_FIRST_TASK, ALICE.getGithubHandle().toString()));
     }
 
     @Test

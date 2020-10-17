@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.PersonName;
+import seedu.address.model.person.GithubHandle;
 import seedu.address.model.person.Phone;
 
 /**
@@ -16,18 +16,18 @@ public class ParsePersonUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses a {@code String personName} into a {@code PersonName}.
+     * Parses a {@code String githubHandle} into a {@code GithubHandle}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code personName} is invalid.
+     * @throws ParseException if the given {@code githubHandle} is invalid.
      */
-    public static PersonName parsePersonName(String personName) throws ParseException {
-        requireNonNull(personName);
-        String trimmedPersonName = personName.trim();
-        if (!PersonName.isValidPersonName(personName)) {
-            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
+    public static GithubHandle parseGithubHandle(String githubHandle) throws ParseException {
+        requireNonNull(githubHandle);
+        String trimmedGithubHandle = githubHandle.trim();
+        if (!GithubHandle.isValidGithubHandle(githubHandle)) {
+            throw new ParseException(GithubHandle.MESSAGE_CONSTRAINTS);
         }
-        return new PersonName(trimmedPersonName);
+        return new GithubHandle(trimmedGithubHandle);
     }
 
     /**

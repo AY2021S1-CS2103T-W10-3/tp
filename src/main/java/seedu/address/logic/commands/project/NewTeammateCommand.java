@@ -11,8 +11,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GithubHandle;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.Project;
 
@@ -39,12 +39,12 @@ public class NewTeammateCommand extends Command {
     public NewTeammateCommand(String name, String phone, String email, String address) throws ParseException {
         requireAllNonNull(name, phone, email, address);
 
-        PersonName personName = ParsePersonUtil.parsePersonName(name);
+        GithubHandle githubHandle = ParsePersonUtil.parseGithubHandle(name);
         Phone personPhone = ParsePersonUtil.parsePhone(phone);
         Email personEmail = ParsePersonUtil.parseEmail(email);
         Address personAddress = ParsePersonUtil.parseAddress(address);
 
-        teammate = new Person(personName, personPhone, personEmail, personAddress);
+        teammate = new Person(githubHandle, personPhone, personEmail, personAddress);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class NewTeammateCommand extends Command {
 
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
-            teammate.getPersonName().toString()));
+            teammate.getGithubHandle().toString()));
     }
 
     @Override

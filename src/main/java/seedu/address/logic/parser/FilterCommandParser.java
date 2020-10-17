@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.PersonName;
+import seedu.address.model.person.GithubHandle;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.task.Task;
 
@@ -39,7 +39,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         Predicate<Task> predicate = task -> true;
 
         if (argMultimap.getValue(PREFIX_TASK_FILTER_BY_ASSIGNEE).isPresent()) {
-            PersonName assigneeName = ParsePersonUtil.parsePersonName(argMultimap
+            GithubHandle assigneeName = ParsePersonUtil.parseGithubHandle(argMultimap
                 .getValue(PREFIX_TASK_FILTER_BY_ASSIGNEE).get());
             predicate = task -> task.hasAssigneeWhoseNameIs(assigneeName);
         }

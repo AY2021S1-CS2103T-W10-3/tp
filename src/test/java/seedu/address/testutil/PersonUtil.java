@@ -5,7 +5,7 @@ import seedu.address.model.person.Person;
 public class PersonUtil {
     public static String getCommandInfo(Person p) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(p.getPersonName()).append(" ")
+        builder.append(p.getGithubHandle()).append(" ")
                 .append(p.getPhone()).append(" ")
                 .append(p.getEmail()).append(" ")
                 .append(p.getAddress());

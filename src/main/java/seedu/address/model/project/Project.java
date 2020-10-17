@@ -14,8 +14,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.GithubHandle;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -34,7 +34,7 @@ public class Project {
     // Data fields
     private final ProjectDescription projectDescription;
     private final Set<ProjectTag> projectTags = new HashSet<>();
-    private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
+    private final HashMap<GithubHandle, Participation> listOfParticipations = new HashMap<>();
     private Predicate<Task> taskFilter = TRUE_TASK_PREDICATE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
@@ -44,7 +44,7 @@ public class Project {
      */
     public Project(ProjectName projectName, Deadline deadline, RepoUrl repoUrl, ProjectDescription projectDescription,
                    Set<ProjectTag> projectTags,
-                   HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
+                   HashMap<GithubHandle, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
         requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
                 listOfParticipations, tasks, meetings);
         this.projectName = projectName;
@@ -94,7 +94,7 @@ public class Project {
      */
     public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
         HashSet<Person> attendees = new HashSet<>();
-        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+        for (Map.Entry<GithubHandle, Participation> entry: listOfParticipations.entrySet()) {
             attendees.add(entry.getValue().getPerson());
         }
         return attendees;
@@ -120,29 +120,29 @@ public class Project {
      */
     public void addParticipation(Person p) {
         listOfParticipations.put(
-            p.getPersonName(), new Participation(p, this));
+            p.getGithubHandle(), new Participation(p, this));
     }
 
     /**
      * Checks whether the project contains a member of the given name.
      */
     public boolean hasParticipation(String name) {
-        return listOfParticipations.containsKey(new PersonName(name));
+        return listOfParticipations.containsKey(new GithubHandle(name));
     }
 
     /**
      * Gets the Participation with the member name.
      */
     public Participation getParticipation(String name) {
-        return listOfParticipations.get(new PersonName(name));
+        return listOfParticipations.get(new GithubHandle(name));
     }
 
     /**
      * Deletes the Participation with the member name.
      */
     public void deleteParticipation(String name) {
-        if (listOfParticipations.containsKey(new PersonName(name))) {
-            listOfParticipations.remove(new PersonName(name));
+        if (listOfParticipations.containsKey(new GithubHandle(name))) {
+            listOfParticipations.remove(new GithubHandle(name));
         }
     }
 
@@ -151,7 +151,7 @@ public class Project {
      */
     public List<Person> getTeammates() {
         List<Person> listOfPersons = new ArrayList<>();
-        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+        for (Map.Entry<GithubHandle, Participation> entry: listOfParticipations.entrySet()) {
             Person p = entry.getValue().getPerson();
             listOfPersons.add(p);
         }

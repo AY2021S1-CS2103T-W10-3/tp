@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GithubHandle;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 
 /**
@@ -11,12 +11,12 @@ import seedu.address.model.person.Phone;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_PERSON_NAME = "Alice Pauline";
+    public static final String DEFAULT_GITHUB_HANDLE = "Alice Pauline";
     public static final String DEFAULT_PHONE = "88888888";
     public static final String DEFAULT_EMAIL = "alicepauline@sample.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private PersonName personName;
+    private GithubHandle githubHandle;
     private Phone phone;
     private Email email;
     private Address address;
@@ -25,7 +25,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        personName = new PersonName(DEFAULT_PERSON_NAME);
+        githubHandle = new GithubHandle(DEFAULT_GITHUB_HANDLE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -35,17 +35,17 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        personName = personToCopy.getPersonName();
+        githubHandle = personToCopy.getGithubHandle();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
     }
 
     /**
-     * Sets the {@code PersonName} of the {@code Person} that we are building.
+     * Sets the {@code GithubHandle} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPersonName(String personName) {
-        this.personName = new PersonName(personName);
+    public PersonBuilder withGithubHandle(String githubHandle) {
+        this.githubHandle = new GithubHandle(githubHandle);
         return this;
     }
 
@@ -74,7 +74,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(personName, phone, email, address);
+        return new Person(githubHandle, phone, email, address);
     }
 
 }

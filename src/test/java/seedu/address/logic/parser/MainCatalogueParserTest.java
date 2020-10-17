@@ -131,16 +131,16 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_assign() throws Exception {
         AssignCommand command = (AssignCommand) parser.parseCommand(
-                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
+                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getGithubHandle(),
                 Status.PROJECT);
-        assertEquals(new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().toString()), command);
+        assertEquals(new AssignCommand(INDEX_FIRST_TASK, ALICE.getGithubHandle().toString()), command);
     }
 
     @Test
     public void parseCommand_filter() throws Exception {
         // FilterCommand does not have equal method as one cannot compare two predicates unless they are identical
         assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
-            + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getPersonName(), Status.PROJECT) instanceof FilterCommand);
+            + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getGithubHandle(), Status.PROJECT) instanceof FilterCommand);
         assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
             + PREFIX_TASK_FILTER_BY_DEADLINE + VALID_TASK_DEADLINE, Status.PROJECT) instanceof FilterCommand);
         assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
@@ -170,7 +170,7 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(
-                    AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
+                    AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getGithubHandle(),
                     Status.CATALOGUE);
             fail();
         } catch (Exception e) {
@@ -179,7 +179,7 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(
-                FilterCommand.COMMAND_WORD + " " + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getPersonName(),
+                FilterCommand.COMMAND_WORD + " " + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getGithubHandle(),
                 Status.CATALOGUE);
             fail();
         } catch (Exception e) {

@@ -14,7 +14,12 @@ public class GithubHandle {
             "GitHub handle should contain only alphabetical-numerical characters and '-', where '-' can only appear"
                     + " between some non-empty sequence of alphabetical-numerical strings, and it should not be blank";
 
+    // @@author lll-jy-reused
+    // Reused and adapted from https://github.com/shinnn/github-username-regex
+
     public static final String VALIDATION_REGEX = "^[a-zA-Z\\d](?:[a-zA-Z\\d]|-(?=[a-zA-Z\\d])){0,38}$";
+
+    // @@author
 
     public final String fullGithubHandle;
 

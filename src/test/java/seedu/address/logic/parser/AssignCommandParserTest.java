@@ -23,7 +23,7 @@ public class AssignCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsAssignCommand() {
-        assertParseSuccess(parser, "1 Alice Pauline",
+        assertParseSuccess(parser, "1 alice-pauline",
                 new AssignCommand(INDEX_FIRST_TASK, ALICE.getGithubHandle().toString()));
     }
 

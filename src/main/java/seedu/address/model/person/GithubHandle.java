@@ -4,19 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Project's name in the main catalogue.
- * Guarantees: immutable; is valid as declared in {@link #isValidGithubHandle(String)}
+ * Represents a Person's GitHub handle.
+ * Guarantees: immutable; is valid as declared in {@link #isValidGithubHandle(String)}; is unique for a person so can be
+ *             the identifier for Person
  */
 public class GithubHandle {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "GitHub handle should contain only alphabetical-numerical characters and '-', where '-' can only appear"
+                    + " between some non-empty sequence of alphabetical-numerical strings, and it should not be blank";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z\\d](?:[a-zA-Z\\d]|-(?=[a-zA-Z\\d])){0,38}$";
 
     public final String fullGithubHandle;
 
@@ -32,7 +30,7 @@ public class GithubHandle {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid github handle.
      */
     public static boolean isValidGithubHandle(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -55,5 +53,4 @@ public class GithubHandle {
     public int hashCode() {
         return fullGithubHandle.hashCode();
     }
-
 }

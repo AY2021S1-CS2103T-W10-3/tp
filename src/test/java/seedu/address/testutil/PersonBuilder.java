@@ -11,7 +11,8 @@ import seedu.address.model.person.Phone;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_GITHUB_HANDLE = "Alice Pauline";
+    public static final String DEFAULT_GITHUB_HANDLE = "alice-pauline";
+    public static final String DEFAULT_PERSON_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "88888888";
     public static final String DEFAULT_EMAIL = "alicepauline@sample.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";

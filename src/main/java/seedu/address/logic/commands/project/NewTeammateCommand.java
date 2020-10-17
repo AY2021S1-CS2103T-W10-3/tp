@@ -26,7 +26,7 @@ public class NewTeammateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Creates a new teammate as a part of this project"
         + "that participates in the current project with his/her name.\n"
-        + "Parameters: NAME, PHONE, EMAIL, ADDRESS (must be present in the project)\n"
+        + "Parameters: GITHUB_HANDLE, PHONE, EMAIL, ADDRESS (must be present in the project)\n"
         + "Example: " + COMMAND_WORD + "1 Lucas 93824823 lucas@gmail.com 18 Evelyn Road";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "New Teammate: ";
@@ -36,15 +36,15 @@ public class NewTeammateCommand extends Command {
     /**
      * Creates an new teammate that is associated with the project
      */
-    public NewTeammateCommand(String name, String phone, String email, String address) throws ParseException {
-        requireAllNonNull(name, phone, email, address);
+    public NewTeammateCommand(String handle, String phone, String email, String address) throws ParseException {
+        requireAllNonNull(handle, phone, email, address);
 
-        GithubHandle githubHandle = ParsePersonUtil.parseGithubHandle(name);
+        GithubHandle personGithubHandle = ParsePersonUtil.parseGithubHandle(handle);
         Phone personPhone = ParsePersonUtil.parsePhone(phone);
         Email personEmail = ParsePersonUtil.parseEmail(email);
         Address personAddress = ParsePersonUtil.parseAddress(address);
 
-        teammate = new Person(githubHandle, personPhone, personEmail, personAddress);
+        teammate = new Person(personGithubHandle, personPhone, personEmail, personAddress);
     }
 
     @Override

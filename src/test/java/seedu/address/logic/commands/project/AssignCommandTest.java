@@ -43,6 +43,7 @@ public class AssignCommandTest {
 
     @Test
     public void execute_invalidIndexValidPerson_throwsCommandException() {
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         Index outOfBoundIndex = Index.fromOneBased(project.getFilteredSortedTaskList().size() + 1);
@@ -51,10 +52,13 @@ public class AssignCommandTest {
         AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getGitUserNameString());
 
         assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+
+        Project.getAllProjects().clear();
     }
 
     @Test
     public void execute_validIndexPersonInvalidAssign_throwsCommandException() {
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -99,6 +103,7 @@ public class AssignCommandTest {
 
     @Test
     public void execute_validIndexValidPersonFilteredList_success() {
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
